@@ -1,0 +1,29 @@
+{
+  "name": "acssemble",
+  "version": "0.0.1",
+  "description": "A Svelte JS and Emotion CSS library for constructing web interfaces ",
+  "main": "src/index.svelte",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colossal-digital/acssemble.git"
+  },
+  "keywords": [
+    "javascript",
+    "css",
+    "svelte",
+    "sveltejs",
+    "emotion"
+  ],
+  "author": "Colossal Digital",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/colossal-digital/acssemble/issues"
+  },
+  "homepage": "https://github.com/colossal-digital/acssemble#readme",
+  "dependencies": {
+    "emotion": "^10.0.14"
+  }
+}
