@@ -1,10 +1,11 @@
 {
   "name": "acssemble",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Svelte JS and Emotion CSS library for constructing web interfaces ",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,29 @@
   },
   "homepage": "https://github.com/colossal-digital/acssemble#readme",
   "dependencies": {
-    "emotion": "^10.0.14"
+    "emotion": "^10.0.14",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "jest-svelte": "^0.0.1",
+    "rollup": "^1.16.6",
+    "rollup-plugin-svelte": "^5.1.0",
+    "svelte": "^3.6.4"
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "babel-jest",
+      "\\.html$": "./dist/index.js",
+      "\\.svelte$": "./dist/index.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "svelte",
+      "html"
+    ]
   }
 }

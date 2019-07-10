@@ -1,1 +1,1 @@
-export { default as Block } from "./Block.svelte";
+export * from "./components";
