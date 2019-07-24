@@ -2,19 +2,12 @@ import { breakpointsToArray } from "../breakpointsToArray";
 import { breakpoints } from "../../breakpoints";
 
 const normalizeCSSValue = value =>
-  typeof value === "number" ? `${value}em` : value || "0";
+  typeof value === "number" ? `${value}em` : value || "initial";
 
 const hasValue = value => ![null, undefined, NaN].includes(value);
 
-const replaceValue = (str, value, index) => {
-  if (!hasValue(value)) {
-    return "";
-  }
-  return str.replace(
-    new RegExp(`\\{${index}\\}`, "gmi"),
-    normalizeCSSValue(value)
-  );
-};
+const replaceValue = (str, value, index) =>
+  str.replace(new RegExp(`\\{${index}\\}`, "gmi"), normalizeCSSValue(value));
 
 export const createMediaStyle = (str, ...props) => {
   const mediaSizes = Object.values(breakpoints);

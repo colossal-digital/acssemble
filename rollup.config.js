@@ -4,12 +4,7 @@ import svelte from "rollup-plugin-svelte";
 import { terser } from "rollup-plugin-terser";
 
 export default {
-  plugins: [
-    svelte(),
-    resolve(),
-    commonjs()
-    //, terser()
-  ],
+  plugins: [svelte(), resolve(), commonjs(), terser()],
   input: ["src/index.js"],
   output: {
     sourcemap: true,
