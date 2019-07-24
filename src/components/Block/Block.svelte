@@ -1,13 +1,14 @@
 <script>
   import { afterUpdate } from "svelte";
   import { css } from "emotion";
-  import { createMediaStyle, combineBoxValues } from "../utils";
+  import { createMediaStyle, concatBoxValues } from "../../utils";
 
   let className = "";
-  let styles = css``;
   let type = "";
 
   export let href = "";
+  export let id = "";
+
   export let m = undefined;
   export let mb = undefined;
   export let ml = undefined;
@@ -24,43 +25,28 @@
   export let px = undefined;
   export let py = undefined;
 
-  export let height = undefined;
+  export let h = undefined;
   export let target = "";
-  export let width = undefined;
+  export let w = undefined;
+
+  const props = {
+    id,
+    class: className
+  };
 
   export { className as class };
-
-  export { m as margin };
-  export { mb as marginBottom };
-  export { ml as marginLeft };
-  export { mr as marginRight };
-  export { mt as marginTop };
-  export { mx as marginX };
-  export { my as marginY };
-
-  export { p as padding };
-  export { pb as paddingBottom };
-  export { pl as paddingLeft };
-  export { pr as paddingRight };
-  export { pt as paddingTop };
-  export { px as paddingX };
-  export { py as paddingY };
-
   export { type as as };
-
   afterUpdate(() => {
-    styles = css`
+    props.class = css`
       ${createMediaStyle(
         `margin: {0};
          padding: {1};
          height: {2};
          width: {3};`,
-        [
-          combineBoxValues(mt || my, mr || mx, mb || my, ml || mx, m),
-          combineBoxValues(pt || py, pr || px, pb || py, pl || px, p),
-          height,
-          width
-        ]
+        concatBoxValues(m, mt || my, mr || mx, mb || my, ml || mx),
+        concatBoxValues(p, pt || py, pr || px, pb || py, pl || px),
+        h,
+        w
       )};
       ${className};
     `;
@@ -68,113 +54,113 @@
 </script>
 
 {#if type === 'a'}
-  <a class={styles} {href} {target}>
+  <a {...props} {href} {target}>
     <slot />
   </a>
 {:else if type === 'article'}
-  <article class={styles}>
+  <article {...props}>
     <slot />
   </article>
 {:else if type === 'aside'}
-  <aside class={styles}>
+  <aside {...props}>
     <slot />
   </aside>
 {:else if type === 'blockquote'}
-  <blockquote class={styles}>
+  <blockquote {...props}>
     <slot />
   </blockquote>
 {:else if type === 'code'}
-  <code class={styles}>
+  <code {...props}>
     <slot />
   </code>
 {:else if type === 'dd'}
-  <dd class={styles}>
+  <dd {...props}>
     <slot />
   </dd>
 {:else if type === 'dl'}
-  <dl class={styles}>
+  <dl {...props}>
     <slot />
   </dl>
 {:else if type === 'dt'}
-  <dt class={styles}>
+  <dt {...props}>
     <slot />
   </dt>
 {:else if type === 'footer'}
-  <footer class={styles}>
+  <footer {...props}>
     <slot />
   </footer>
 {:else if type === 'h1'}
-  <h1 class={styles}>
+  <h1 {...props}>
     <slot />
   </h1>
 {:else if type === 'h2'}
-  <h2 class={styles}>
+  <h2 {...props}>
     <slot />
   </h2>
 {:else if type === 'h3'}
-  <h3 class={styles}>
+  <h3 {...props}>
     <slot />
   </h3>
 {:else if type === 'h4'}
-  <h4 class={styles}>
+  <h4 {...props}>
     <slot />
   </h4>
 {:else if type === 'h5'}
-  <h5 class={styles}>
+  <h5 {...props}>
     <slot />
   </h5>
 {:else if type === 'h6'}
-  <h6 class={styles}>
+  <h6 {...props}>
     <slot />
   </h6>
 {:else if type === 'header'}
-  <header class={styles}>
+  <header {...props}>
     <slot />
   </header>
 {:else if type === 'hgroup'}
-  <hgroup class={styles}>
+  <hgroup {...props}>
     <slot />
   </hgroup>
 {:else if type === 'hr'}
-  <hr class={styles} />
+  <hr {...props} />
 {:else if type === 'li'}
-  <li class={styles}>
+  <li {...props}>
     <slot />
   </li>
 {:else if type === 'main'}
-  <main class={styles}>
+  <main {...props}>
     <slot />
   </main>
 {:else if type === 'ol'}
-  <ol class={styles}>
+  <ol {...props}>
     <slot />
   </ol>
 {:else if type === 'p'}
-  <p class={styles}>
+  <p {...props}>
     <slot />
   </p>
 {:else if type === 'pre'}
-  <pre class={styles}>
+  <pre {...props}>
     <slot />
   </pre>
 {:else if type === 'nav'}
-  <nav class={styles}>
+  <nav {...props}>
     <slot />
   </nav>
 {:else if type === 'section'}
-  <section class={styles}>
+  <section {...props}>
     <slot />
   </section>
 {:else if type === 'span'}
-  <span class={styles}>
+  <span {...props}>
     <slot />
   </span>
 {:else if type === 'ul'}
-  <ul class={styles}>
+  <ul {...props}>
     <slot />
   </ul>
 {:else}
-  <div class={styles}>
+  <div {...props}>
     <slot />
   </div>
 {/if}
